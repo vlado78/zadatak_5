@@ -1,43 +1,33 @@
+drop database if exists muzej;
 
-drop database if exists taxi;
+create database muzej;
 
-create database taxi;
+use muzej;
 
-use taxi;
-
-
-create table vozilo(
+create table izlozba (
 sifra int not null primary key auto_increment,
-vozac int
+dijela int,
+kustos int,
+sponzor int
+);
 
-
+create table dijela(
+sifra int not null primary key auto_increment,
+naziv varchar(20)
 
 );
 
-
-create table vozac(
-sifra int primary key not null auto_increment,
+create table kustos(
+sifra int not null primary key auto_increment,
 ime varchar(20),
-prezime varchar(20)
-
+prezima varchar(20)
 );
 
-
-create table voznja(
-sifra int primary key not null auto_increment,
-vozilo int,
-putnik int
-
-
-
-);
-
-
-
-create table putnik(
+create table sponzor(
 sifra int not null primary key auto_increment,
 ime varchar (20),
-prezime varchar(20)
-
-
+prezime varchar (20)
 );
+
+
+alter table izlozba add foreign key (dijela) references dijela(sifra);
